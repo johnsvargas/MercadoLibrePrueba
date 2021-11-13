@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MercadoLibrePrueba</string>
+    <string name="label_search">Buscar</string>
+    <string name="label_title_description_detail_product">Descripcion</string>
+</resources>

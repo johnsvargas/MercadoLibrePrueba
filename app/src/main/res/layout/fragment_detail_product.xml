@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="product"
+            type="com.juanvargas.mercadolibreprueba.search.data.model.Product" />
+        <variable
+            name="description"
+            type="String" />
+        <import type="com.juanvargas.mercadolibreprueba.util.formatters.FormattersString" />
+        <import type="com.juanvargas.mercadolibreprueba.util.formatters.FormattersDouble" />
+        <import type="com.juanvargas.mercadolibreprueba.util.formatters.FormattersInt" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_condition_product_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{FormattersString.setCondition(product.condition)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nuevo" />
+
+            <View
+                android:id="@+id/divider_tags_product_detail"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_condition_product_detail"
+                app:layout_constraintStart_toEndOf="@+id/tv_condition_product_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_condition_product_detail"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <TextView
+                android:id="@+id/tv_times_sellers_product_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{FormattersInt.formatterSoldQuantity(product.soldQuantity)}"
+                app:layout_constraintStart_toEndOf="@+id/divider_tags_product_detail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="33 Vendidos" />
+
+            <TextView
+                android:id="@+id/tv_title_product_detail"
+                style="@style/label_title_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{product.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_times_sellers_product_detail"
+                tools:text="Xiaomi Mi 10 Lite Dual Sim 128 Gb Gris Cósmico 6 Gb Ram" />
+
+            <ImageView
+                android:id="@+id/iv_image_detail_product"
+                imageUrl="@{product.pictures[0].url}"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_product_detail" />
+
+            <TextView
+                android:id="@+id/tv_price_detail_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/label_prices_detail_product_style"
+                tools:text="$6,013"
+                android:text="@{FormattersDouble.formatPriceNoDecimals(product.price)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_image_detail_product" />
+
+            <TextView
+                android:id="@+id/tv_title_description_detail_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_title_description_detail_product"
+                style="@style/label_title_style"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_detail_product" />
+
+            <TextView
+                android:id="@+id/tv_description_detail_product"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:text="@{description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_description_detail_product" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_attributes_detail_product"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description_detail_product"
+                tools:listitem="@layout/item_attribute" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</layout>
